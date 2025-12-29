@@ -98,6 +98,7 @@ export default function ProductDetailPage() {
     fullName: "",
     phone: "",
     price: "",
+    address: "", // ← اضافه شد
   })
 
   const [submitStatus, setSubmitStatus] = useState<"idle" | "sending" | "success" | "error">("idle")
@@ -134,6 +135,7 @@ export default function ProductDetailPage() {
       fullName: offerData.fullName,
       phone: offerData.phone,
       offerPrice: offerData.price,
+      address: offerData.address, // ← اضافه شد
       submittedAt: formattedDate,
     }
 
@@ -149,7 +151,7 @@ export default function ProductDetailPage() {
       if (response.ok) {
         setSubmitStatus("success")
         alert("پیشنهاد قیمت شما با موفقیت ثبت شد! 🌹")
-        setOfferData({ fullName: "", phone: "", price: "" })
+        setOfferData({ fullName: "", phone: "", price: "", address: "" }) // ← اضافه شد
         setTimeout(() => setSubmitStatus("idle"), 3000)
       } else {
         setSubmitStatus("error")
@@ -223,6 +225,7 @@ export default function ProductDetailPage() {
             </div>
           </div>
 
+          {/* فرم پیشنهاد قیمت با فیلد آدرس */}
           <Card className="p-8 bg-gradient-to-br from-slate-900/50 to-slate-800/50" id="order">
             <h2 className="text-3xl font-bold mb-6 text-center">پیشنهاد قیمت خود را ثبت کنید 🌹</h2>
             <form onSubmit={handleOfferSubmit} className="max-w-2xl mx-auto space-y-6">
@@ -252,6 +255,20 @@ export default function ProductDetailPage() {
                   className="w-full px-4 py-3 bg-muted border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600"
                   placeholder="۰۹۱۲۳۴۵۶۷۸۹"
                   dir="ltr"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-2">
+                  آدرس محل سکونت <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={offerData.address}
+                  onChange={(e) => setOfferData({ ...offerData, address: e.target.value })}
+                  className="w-full px-4 py-3 bg-muted border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600"
+                  placeholder="آدرس خود را وارد کنید"
                 />
               </div>
 
