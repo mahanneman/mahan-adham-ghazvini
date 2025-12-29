@@ -8,8 +8,8 @@ import "./globals.css"
 const vazirmatn = Vazirmatn({ subsets: ["arabic", "latin"] })
 
 export const metadata: Metadata = {
-  title: "پورتفولیوی مهندسی مکانیک - تحلیل و طراحی پیشرفته",
-  description: "پورتفولیوی حرفه‌ای مهندس مکانیک - تحلیل ANSYS، طراحی CATIA، شبیه‌سازی MATLAB و محصولات مهندسی",
+  title: "ماهان ادهم قزوینی",
+  description: "کارشناسی مهندسی مکانیک ",
   generator: "v0.app",
   icons: {
     icon: [
