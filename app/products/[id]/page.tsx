@@ -87,7 +87,6 @@ const products = [
     ],
   },
 ]
-
 export default function ProductDetailPage() {
   const params = useParams()
   const router = useRouter()
@@ -97,8 +96,9 @@ export default function ProductDetailPage() {
   const [offerData, setOfferData] = useState({
     fullName: "",
     phone: "",
+    quantity: 1, // ← تعداد
     price: "",
-    address: "", // ← اضافه شد
+    address: "", // ← آدرس
   })
 
   const [submitStatus, setSubmitStatus] = useState<"idle" | "sending" | "success" | "error">("idle")
@@ -134,6 +134,7 @@ export default function ProductDetailPage() {
       productId: product.id,
       fullName: offerData.fullName,
       phone: offerData.phone,
+      quantity: offerData.quantity, // ← اضافه شد
       offerPrice: offerData.price,
       address: offerData.address, // ← اضافه شد
       submittedAt: formattedDate,
@@ -151,7 +152,7 @@ export default function ProductDetailPage() {
       if (response.ok) {
         setSubmitStatus("success")
         alert("پیشنهاد قیمت شما با موفقیت ثبت شد! 🌹")
-        setOfferData({ fullName: "", phone: "", price: "", address: "" }) // ← اضافه شد
+        setOfferData({ fullName: "", phone: "", price: "", address: "", quantity: 1 }) // ← ریست کامل
         setTimeout(() => setSubmitStatus("idle"), 3000)
       } else {
         setSubmitStatus("error")
